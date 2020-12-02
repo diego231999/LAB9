@@ -32,20 +32,26 @@
                 <div class="form-group">
                     <label>Selección local</label>
                     <select name="local" class="form-control">
-<%--                       COLOCAR LISTA DE SELECCIONES DE LA BASE DE DATOS--%>
+                        <%for(SeleccionesNacionales sn : selecciones){ %>
+                        <option><%=sn.getNombre()%></option>
+                        <% } %>
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Selección Visitante</label>
                     <select name="visitante" class="form-control">
-<%--                        COLOCAR LISTA DE SELECCIONES DE LA BASE DE DATOS--%>
+                        <%for(SeleccionesNacionales sn : selecciones){ %>
+                        <option><%=sn.getNombre()%></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Árbitro</label>
                     <select name="arbitro" class="form-control">
-<%--                        COLOCAR LISTA DE ÁRBITRO DE LA BASE DE DATOS--%>
-                    </select>
+                        <%for(Arbitros ar : arbitros){ %>
+                        <option><%=ar.getNombre()%></option>
+                        <% } %>                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a href="<%= request.getContextPath()%>/PartidosServlet" class="btn btn-danger">Cancelar</a>
