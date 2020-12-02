@@ -68,11 +68,12 @@ public class DaoPartidos extends DaoBase{
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();) {
 
-            String sql = "select nombre from seleccionesnacionales;";
+            String sql = "select nombre, idSeleccionesNacionales from seleccionesnacionales;";
             try(ResultSet rs = stmt.executeQuery(sql)){
                 while(rs.next()){
                     SeleccionesNacionales sn = new SeleccionesNacionales();
                     sn.setNombre(rs.getString(1));
+                    sn.setIdSeleccionesNacionales(rs.getInt(2));
 
                     selecciones.add(sn);
                 }
@@ -89,11 +90,12 @@ public class DaoPartidos extends DaoBase{
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();) {
 
-            String sql = "select nombre from arbitros;";
+            String sql = "select nombre, idArbitros from arbitros;";
             try(ResultSet rs = stmt.executeQuery(sql)){
                 while(rs.next()){
                     Arbitros ar = new Arbitros();
                     ar.setNombre(rs.getString(1));
+                    ar.setIdArbitros(rs.getInt(2));
 
                     arbitros.add(ar);
                 }
