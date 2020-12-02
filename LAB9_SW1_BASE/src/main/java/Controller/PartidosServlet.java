@@ -36,11 +36,11 @@ public class PartidosServlet extends HttpServlet {
 
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
         RequestDispatcher view;
+        DaoPartidos daoPartidos = new DaoPartidos();
         switch (action) {
             case "lista":
-                /*
-                Inserte su código aquí
-                 */
+                request.setAttribute("listaPartidos",daoPartidos.listaDePartidos());
+
                 view = request.getRequestDispatcher("index.jsp");
                 view.forward(request, response);
                 break;
