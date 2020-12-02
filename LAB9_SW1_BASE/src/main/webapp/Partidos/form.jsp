@@ -1,7 +1,12 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Bean.SeleccionesNacionales" %>
+<%@ page import="Bean.Arbitros" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    ArrayList<SeleccionesNacionales> selecciones = (ArrayList<SeleccionesNacionales>) request.getAttribute("listaSelecciones");
+    ArrayList<Arbitros> arbitros = (ArrayList<Arbitros>) request.getAttribute("listaArbitros");
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

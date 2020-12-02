@@ -24,9 +24,11 @@ public class PartidosServlet extends HttpServlet {
         switch (action) {
 
             case "guardar":
-                /*
-                Inserte su código aquí
-                 */
+                request.getParameter("jornada");
+                request.getParameter("fecha");
+                request.getParameter("local");
+                request.getParameter("visitante");
+                request.getParameter("arbitro");
                 break;
 
         }
@@ -45,9 +47,10 @@ public class PartidosServlet extends HttpServlet {
                 view.forward(request, response);
                 break;
             case "crear":
-                /*
-                Inserte su código aquí
-                 */
+                request.setAttribute("listaSelecciones",daoPartidos.listaSelecciones());
+                request.setAttribute("listaArbitros",daoPartidos.listasArbitros());
+                view = request.getRequestDispatcher("form.jsp");
+                view.forward(request, response);
                 break;
 
         }

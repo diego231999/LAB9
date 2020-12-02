@@ -1,6 +1,10 @@
-
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="javax.naming.ldap.PagedResultsControl" %>
+<%@ page import="Bean.Partidos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    ArrayList<Partidos> listaPartidos = (ArrayList<Partidos>) request.getAttribute("listaPartidos");
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +12,9 @@
     <title>JSP Page</title>
 </head>
 <body>
+<jsp:include page="/Includes/navbar.jsp">
+    <jsp:param name="navbar" value=""/>
+</jsp:include>
 <div class='container'>
     <div class="row mb-5 mt-4">
         <div class="col-lg-6">
@@ -28,15 +35,23 @@
             <th>Árbitro</th>
         </tr>
 
+            <%
+                int i = 1;
+                for(Partidos partidos: listaPartidos){
+            %>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+
+            <td><%= i %></td>
+            <td><%= partidos.getNumeroJornada() %></td>
+            <td><%= partidos.getFecha()%></td>
+            <td><%= partidos.getSeleccionLocal().getNombre()%></td>
+            <td><%= partidos.getSeleccionVisitante().getNombre()%></td>
+            <td><%= partidos.getSeleccionLocal().getEstadio().getNombre()%></td>
+            <td><%= partidos.getArbitro().getNombre()%></td>
         </tr>
+        <%
+               i++; }
+            %>
 
     </table>
 </div>

@@ -38,18 +38,21 @@ public class DaoPartidos extends DaoBase{
                     sn2.setNombre(rs.getString(4));
                     p.setSeleccionVisitante(sn2);
 
-                    sn.setEstadio((Estadios) rs.getObject(5));
+                    Estadios e = new Estadios();
+                    e.setNombre(rs.getString(5));
+                    sn.setEstadio(e);
+                    p.setSeleccionLocal(sn);
 
                     Arbitros ar = new Arbitros();
                     ar.setNombre(rs.getString(6));
                     p.setArbitro(ar);
 
+                    partidos.add(p);
                 }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
         return partidos;
     }
@@ -59,6 +62,47 @@ public class DaoPartidos extends DaoBase{
         /*
                 Inserte su código aquí
                  */
+    }
+    public ArrayList<SeleccionesNacionales> listaSelecciones(){
+        ArrayList<SeleccionesNacionales> selecciones = new ArrayList<>();
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();) {
+
+            String sql = "select nombre from seleccionesnacionales;";
+            try(ResultSet rs = stmt.executeQuery(sql)){
+                while(rs.next()){
+                    SeleccionesNacionales sn = new SeleccionesNacionales();
+                    sn.setNombre(rs.getString(1));
+
+                    selecciones.add(sn);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return selecciones;
+    }
+
+    public ArrayList<Arbitros> listasArbitros(){
+        ArrayList<Arbitros> arbitros = new ArrayList<>();
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();) {
+
+            String sql = "select nombre from arbitros;";
+            try(ResultSet rs = stmt.executeQuery(sql)){
+                while(rs.next()){
+                    Arbitros ar = new Arbitros();
+                    ar.setNombre(rs.getString(1));
+
+                    arbitros.add(ar);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return arbitros;
     }
 
 
